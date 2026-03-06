@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+table{
+border-collapse:collapse;
+margin:auto;
+}
+
+td{
+border:2px solid white;
+width:40px;
+height:40px;
+}
+
+input{
+width:38px;
+height:38px;
+text-align:center;
+font-size:18px;
+background:black;
+color:white;
+border:none;
+}
+
+.fixed{
+color:yellow;
+font-weight:bold;
+}
+
+</style>
+
+<script>
+
+// Correct Sudoku Solution
+const solution = [
+[5,3,4,6,7,8,9,1,2],
+[6,7,2,1,9,5,3,4,8],
+[1,9,8,3,4,2,5,6,7],
+[8,5,9,7,6,1,4,2,3],
+[4,2,6,8,5,3,7,9,1],
+[7,1,3,9,2,4,8,5,6],
+[9,6,1,5,3,7,2,8,4],
+[2,8,7,4,1,9,6,3,5],
+[3,4,5,2,8,6,1,7,9]
+];
+
+function validateInput(cell){
+if(cell.value < 1 || cell.value > 9)
+cell.value="";
+}
+
+function checkGrid(){
+
+let inputs=document.querySelectorAll("input");
+let correct=true;
+let filled=true;
+
+inputs.forEach((cell)=>{
+
+let val=parseInt(cell.value);
+
+if(!val)
+filled=false;
+
+let row=cell.dataset.row;
+let col=cell.dataset.col;
+
+if(val!=solution[row][col])
+correct=false;
+
+});
+
+if(filled){
+
+if(correct)
+document.getElementById("msg").innerHTML="🎉 Correct Sudoku!";
+else
+document.getElementById("msg").innerHTML="❌ Wrong Sudoku";
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h2>Sudoku Game (9×9)</h2>
+
+<table>
+
+<tr>
+<td class="fixed">5</td>
+<td class="fixed">3</td>
+<td><input data-row="0" data-col="2" onkeyup="checkGrid()"></td>
+<td><input data-row="0" data-col="3" onkeyup="checkGrid()"></td>
+<td class="fixed">7</td>
+<td><input data-row="0" data-col="5" onkeyup="checkGrid()"></td>
+<td><input data-row="0" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="0" data-col="7" onkeyup="checkGrid()"></td>
+<td><input data-row="0" data-col="8" onkeyup="checkGrid()"></td>
+</tr>
+
+<tr>
+<td class="fixed">6</td>
+<td><input data-row="1" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="1" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">1</td>
+<td class="fixed">9</td>
+<td class="fixed">5</td>
+<td><input data-row="1" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="1" data-col="7" onkeyup="checkGrid()"></td>
+<td><input data-row="1" data-col="8" onkeyup="checkGrid()"></td>
+</tr>
+
+<tr>
+<td><input data-row="2" data-col="0" onkeyup="checkGrid()"></td>
+<td class="fixed">9</td>
+<td class="fixed">8</td>
+<td><input data-row="2" data-col="3" onkeyup="checkGrid()"></td>
+<td><input data-row="2" data-col="4" onkeyup="checkGrid()"></td>
+<td><input data-row="2" data-col="5" onkeyup="checkGrid()"></td>
+<td><input data-row="2" data-col="6" onkeyup="checkGrid()"></td>
+<td class="fixed">6</td>
+<td><input data-row="2" data-col="8" onkeyup="checkGrid()"></td>
+</tr>
+
+<tr>
+<td class="fixed">8</td>
+<td><input data-row="3" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="3" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">7</td>
+<td class="fixed">6</td>
+<td class="fixed">1</td>
+<td><input data-row="3" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="3" data-col="7" onkeyup="checkGrid()"></td>
+<td class="fixed">3</td>
+</tr>
+
+<tr>
+<td class="fixed">4</td>
+<td><input data-row="4" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="4" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">8</td>
+<td><input data-row="4" data-col="4" onkeyup="checkGrid()"></td>
+<td class="fixed">3</td>
+<td><input data-row="4" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="4" data-col="7" onkeyup="checkGrid()"></td>
+<td class="fixed">1</td>
+</tr>
+
+<tr>
+<td class="fixed">7</td>
+<td><input data-row="5" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="5" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">9</td>
+<td class="fixed">2</td>
+<td class="fixed">4</td>
+<td><input data-row="5" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="5" data-col="7" onkeyup="checkGrid()"></td>
+<td class="fixed">6</td>
+</tr>
+
+<tr>
+<td><input data-row="6" data-col="0" onkeyup="checkGrid()"></td>
+<td class="fixed">6</td>
+<td><input data-row="6" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">5</td>
+<td><input data-row="6" data-col="4" onkeyup="checkGrid()"></td>
+<td class="fixed">7</td>
+<td><input data-row="6" data-col="6" onkeyup="checkGrid()"></td>
+<td class="fixed">8</td>
+<td><input data-row="6" data-col="8" onkeyup="checkGrid()"></td>
+</tr>
+
+<tr>
+<td><input data-row="7" data-col="0" onkeyup="checkGrid()"></td>
+<td><input data-row="7" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="7" data-col="2" onkeyup="checkGrid()"></td>
+<td class="fixed">4</td>
+<td class="fixed">1</td>
+<td class="fixed">9</td>
+<td><input data-row="7" data-col="6" onkeyup="checkGrid()"></td>
+<td><input data-row="7" data-col="7" onkeyup="checkGrid()"></td>
+<td class="fixed">5</td>
+</tr>
+
+<tr>
+<td><input data-row="8" data-col="0" onkeyup="checkGrid()"></td>
+<td><input data-row="8" data-col="1" onkeyup="checkGrid()"></td>
+<td><input data-row="8" data-col="2" onkeyup="checkGrid()"></td>
+<td><input data-row="8" data-col="3" onkeyup="checkGrid()"></td>
+<td class="fixed">8</td>
+<td><input data-row="8" data-col="5" onkeyup="checkGrid()"></td>
+<td><input data-row="8" data-col="6" onkeyup="checkGrid()"></td>
+<td class="fixed">7</td>
+<td class="fixed">9</td>
+</tr>
+
+</table>
+
+<p id="msg"></p>
+
+</body>
+</html>
